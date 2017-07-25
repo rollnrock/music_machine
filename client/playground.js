@@ -1,9 +1,15 @@
 //playground.js
 
-acontext = new webkitAudioContext() || new AudioContext;  
+//acontext = new webkitAudioContext() || new AudioContext;  
 
 //Now we can create an instance of our waveform generator and play it.
-
+try {
+  acontext = new webkitAudioContext();
+} catch (e){
+  if (e instanceof ReferenceError) {
+    acontext = new AudioContext;
+  }
+} // catch
 waveform = new Synth(acontext);
 maxim1 = new Maxim();
 maxim2 = new Maxim();
